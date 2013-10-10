@@ -87,7 +87,7 @@ This example:
 
 ```puppet
 class { 'ksm':
-  ksm_config => {
+  ksm_config      => {
     'KSM_MAX_KERNEL_PAGES' => 0,
   },
   ksmtuned_config => {
@@ -108,30 +108,30 @@ The `ksmtuned` debugging log is enabled at the path `/var/log/ksmtuned` with
 ```puppet
 # defaults
 class { 'ksm':
-  ksm_config => {},
+  ksm_config      => {},
   ksmtuned_config => {},
 }
 ```
 
 * `ksm_config`
 
-`Hash`
+    `Hash`
 
-Options to be set in `/etc/sysconfig/ksm`
+    Options to be set in `/etc/sysconfig/ksm`
 
-Valid Keys are:
+    Valid Keys are:
 
     * `KSM_MAX_KERNEL_PAGES`
 
-defaults to: `{}`
+    defaults to: `{}`
 
 * `ksmtuned_config`
 
-`Hash`
+    `Hash`
 
-Options to be set in `/etc/ksmtuned.conf`
+    Options to be set in `/etc/ksmtuned.conf`
 
-Valid Keys are:
+    Valid Keys are:
 
     * `KSM_MONITOR_INTERVAL`
     * `KSM_SLEEP_MSEC`
@@ -142,7 +142,7 @@ Valid Keys are:
     * `KSM_THRES_COEF`
     * `KSM_THRES_CONST`
 
-defaults to: `{}`
+    defaults to: `{}`
 
 
 Limitations

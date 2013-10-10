@@ -4,7 +4,7 @@ fixtures:
       repo: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
       ref: "4.0.0"
     "logrotate":
-      repo: "git@github.com:rodjek/puppet-logrotate.git"
+      repo: "git://github.com:rodjek/puppet-logrotate.git"
       ref: "1.1.1"
   symlinks:
     "ksm": "#{source_dir}"

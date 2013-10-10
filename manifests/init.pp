@@ -6,7 +6,11 @@
 #
 # include ksm
 #
-class ksm inherits ksm::params {
+class ksm(
+  $ksm_config = {},
+) inherits ksm::params {
+  validate_hash($ksm_config)
+
   ensure_packages(any2array($ksm::params::ksm_package_name))
 
   Package[$ksm::params::ksm_package_name] ->

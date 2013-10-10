@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe 'ksm', :type => :class do
 
-  describe 'for osfamily RedHat' do
-    let(:facts) {{ :osfamily => 'RedHat' }}
-
+  shared_examples 'ksm' do
     it do
       should contain_class('ksm')
       should contain_package('qemu-kvm')
@@ -13,7 +11,7 @@ describe 'ksm', :type => :class do
         :owner  => 'root',
         :group  => 'root',
         :mode   => '0644',
-      }).with_content(/# KSM_MAX_KERNEL_PAGES=/)
+      })
       should contain_service('ksm').with({
         :enable     => 'true',
         :hasrestart => 'true',
@@ -31,6 +29,39 @@ describe 'ksm', :type => :class do
         :hasrestart => 'true',
         :hasstatus  => 'true',
       })
+    end
+  end
+
+  context 'for osfamily RedHat' do
+    let(:facts) {{ :osfamily => 'RedHat' }}
+
+    context 'no params' do
+      it_behaves_like 'ksm'
+      it do
+        verify_contents(subject, '/etc/sysconfig/ksm', [
+          '# KSM_MAX_KERNEL_PAGES=',
+        ])
+      end
+    end
+
+    context 'ksm_config => {}' do
+      let(:params) {{ :ksm_config => {} }}
+      it_behaves_like 'ksm'
+      it do
+        verify_contents(subject, '/etc/sysconfig/ksm', [
+          '# KSM_MAX_KERNEL_PAGES=',
+        ])
+      end
+    end
+
+    context 'ksm_config => { KSM_MAX_KERNEL_PAGES => 0 }' do
+      let(:params) {{ :ksm_config => { 'KSM_MAX_KERNEL_PAGES' => 0 } }}
+      it_behaves_like 'ksm'
+      it do
+        verify_contents(subject, '/etc/sysconfig/ksm', [
+          'KSM_MAX_KERNEL_PAGES=0',
+        ])
+      end
     end
   end
 

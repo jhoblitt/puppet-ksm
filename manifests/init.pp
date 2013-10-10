@@ -48,4 +48,17 @@ class ksm(
     hasstatus  => true,
     enable     => true,
   }
+
+  # identical rules as /etc/logrotate.d/libvirtd from libvirt-0.10.2-18
+  logrotate::rule { 'ksmtuned':
+    path          => '/var/log/ksmtuned',
+    rotate_every  => 'weekly',
+    missingok     => true,
+    rotate        => 4,
+    compress      => true,
+    delaycompress => true,
+    copytruncate  => true,
+    minsize       => '100k',
+  }
+
 }

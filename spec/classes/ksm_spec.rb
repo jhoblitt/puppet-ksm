@@ -29,6 +29,16 @@ describe 'ksm', :type => :class do
         :hasrestart => 'true',
         :hasstatus  => 'true',
       })
+      should contain_logrotate__rule('ksmtuned').with({
+        :path          => '/var/log/ksmtuned',
+        :rotate_every  => 'weekly',
+        :missingok     => true,
+        :rotate        => 4,
+        :compress      => true,
+        :delaycompress => true,
+        :copytruncate  => true,
+        :minsize       => '100k',
+      })
     end
   end
 

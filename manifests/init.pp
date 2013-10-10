@@ -1,10 +1,43 @@
 # == Class: ksm
 #
-# simple template
+# Manages Linux Kernel Samepage Merging (KSM)
 #
-# === Examples
 #
-# include ksm
+# === Parameters
+#
+# [*ksm_config*]
+#   `Hash`
+#
+#   Options to be set in `/etc/sysconfig/ksm`
+#
+#   Valid Keys are:
+#     `KSM_MAX_KERNEL_PAGES`
+#
+#   defaults to: `{}`
+#
+# [*ksmtuned_config*]
+#   `Hash`
+#
+#   Options to be set in `/etc/ksmtuned.conf`
+#
+#   Valid Keys are:
+#
+#     `KSM_MONITOR_INTERVAL`
+#     `KSM_SLEEP_MSEC`
+#     `KSM_NPAGES_BOOST`
+#     `KSM_NPAGES_DECAY`
+#     `KSM_NPAGES_MIN`
+#     `KSM_NPAGES_MAX`
+#     `KSM_THRES_COEF`
+#     `KSM_THRES_CONST`
+#
+#   defaults to: `{}`
+#
+#
+# === Authors
+#
+# Joshua Hoblitt <jhoblitt@cpan.org>
+#
 #
 class ksm(
   $ksm_config      = {},

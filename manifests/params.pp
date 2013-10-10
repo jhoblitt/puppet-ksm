@@ -3,6 +3,11 @@
 # This class should be considered private.
 #
 #
+# === Authors
+#
+# Joshua Hoblitt <jhoblitt@cpan.org>
+#
+#
 class ksm::params {
   case $::osfamily {
     'redhat': {

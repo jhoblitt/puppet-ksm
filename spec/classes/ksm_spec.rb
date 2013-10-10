@@ -8,6 +8,17 @@ describe 'ksm', :type => :class do
     it do
       should contain_class('ksm')
       should contain_package('qemu-kvm')
+      should contain_service('ksm').with({
+        :enable     => 'true',
+        :hasrestart => 'true',
+        :hasstatus  => 'true',
+      })
+      should contain_service('ksmtuned').with({
+        :ensure     => 'running',
+        :enable     => 'true',
+        :hasrestart => 'true',
+        :hasstatus  => 'true',
+      })
     end
   end
 

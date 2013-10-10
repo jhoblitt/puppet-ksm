@@ -10,6 +10,7 @@ Puppet ksm Module
 2. [Words of Caution](#words-of-caution)
 3. [Usage](#usage)
     * [Simple](#simple)
+    * [Files](#files)
     * [Advanced](#advanced)
     * [`ksm`](#ksm)
 4. [Limitations](#limitations)

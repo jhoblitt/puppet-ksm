@@ -8,6 +8,12 @@ describe 'ksm', :type => :class do
     it do
       should contain_class('ksm')
       should contain_package('qemu-kvm')
+      should contain_file('/etc/sysconfig/ksm').with({
+        :ensure => 'file',
+        :owner  => 'root',
+        :group  => 'root',
+        :mode   => '0644',
+      }).with_content(/# KSM_MAX_KERNEL_PAGES=/)
       should contain_service('ksm').with({
         :enable     => 'true',
         :hasrestart => 'true',

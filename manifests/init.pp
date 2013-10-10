@@ -23,6 +23,14 @@ class ksm inherits ksm::params {
     enable     => true,
   }
 
+  Package[$ksm::params::ksm_package_name] ->
+  file { '/etc/ksmtuned.conf':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template("${module_name}/ksmtuned.conf.erb"),
+  } ->
   service { 'ksmtuned':
     ensure     => 'running',
     hasrestart => true,

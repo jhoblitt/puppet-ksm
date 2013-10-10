@@ -19,6 +19,12 @@ describe 'ksm', :type => :class do
         :hasrestart => 'true',
         :hasstatus  => 'true',
       })
+      should contain_file('/etc/ksmtuned.conf').with({
+        :ensure => 'file',
+        :owner  => 'root',
+        :group  => 'root',
+        :mode   => '0644',
+      })
       should contain_service('ksmtuned').with({
         :ensure     => 'running',
         :enable     => 'true',

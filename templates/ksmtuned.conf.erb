@@ -19,3 +19,6 @@
 
 # LOGFILE=/var/log/ksmtuned
 # DEBUG=1
+<% @safe_ksmtuned_config.sort.map do |k, v| -%>
+<%= k %>=<%= v %>
+<% end -%>

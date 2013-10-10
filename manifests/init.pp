@@ -7,9 +7,16 @@
 # include ksm
 #
 class ksm(
-  $ksm_config = {},
+  $ksm_config      = {},
+  $ksmtuned_config = {},
 ) inherits ksm::params {
   validate_hash($ksm_config)
+  validate_hash($ksmtuned_config)
+
+  $safe_ksmtuned_config = merge($ksmtuned_config, {
+    'LOGFILE' => '/var/log/ksmtuned',
+    'DEBUG'   => '1',
+  })
 
   ensure_packages(any2array($ksm::params::ksm_package_name))
 

@@ -5,7 +5,7 @@ describe 'ksm::params', :type => :class do
   context 'for osfamily RedHat' do
     let(:facts) {{ :osfamily => 'RedHat' }}
 
-    it { should include_class('ksm::params') }
+    it { should contain_class('ksm::params') }
   end
 
   context 'unsupported osfamily' do
@@ -17,7 +17,7 @@ describe 'ksm::params', :type => :class do
     end
   
     it 'should fail' do
-      expect { should include_class('ksm::params') }.
+      expect { should contain_class('ksm::params') }.
         to raise_error(Puppet::Error, /not supported on Debian/)
     end
   end

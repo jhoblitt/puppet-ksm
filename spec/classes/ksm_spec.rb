@@ -48,7 +48,7 @@ describe 'ksm', :type => :class do
     context 'no params' do
       it_behaves_like 'ksm'
       it do
-        verify_contents(subject, '/etc/sysconfig/ksm', [
+        verify_contents(catalogue, '/etc/sysconfig/ksm', [
           '# KSM_MAX_KERNEL_PAGES=',
         ])
       end
@@ -59,7 +59,7 @@ describe 'ksm', :type => :class do
 
       it_behaves_like 'ksm'
       it do
-        verify_contents(subject, '/etc/sysconfig/ksm', [
+        verify_contents(catalogue, '/etc/sysconfig/ksm', [
           '# KSM_MAX_KERNEL_PAGES=',
         ])
       end
@@ -70,7 +70,7 @@ describe 'ksm', :type => :class do
 
       it_behaves_like 'ksm'
       it do
-        verify_contents(subject, '/etc/sysconfig/ksm', [
+        verify_contents(catalogue, '/etc/sysconfig/ksm', [
           'KSM_MAX_KERNEL_PAGES=0',
         ])
       end

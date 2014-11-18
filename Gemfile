@@ -6,18 +6,22 @@ else
   gem 'puppet', :require => false
 end
 
-group :development, :test do
-  gem 'rake'
-  gem 'puppetlabs_spec_helper'
-  gem 'puppet-lint'
-  gem 'puppet-syntax'
-end
-
+gem 'rake',                   :require => false
+gem 'puppetlabs_spec_helper', :require => false
+gem 'puppet-lint',            :require => false
+gem 'puppet-syntax',          :require => false
+gem 'rspec-puppet',
+  :git => 'https://github.com/rodjek/rspec-puppet.git',
+  :ref => '6ac97993fa972a15851a73d55fe3d1c0a85172b5',
+  :require => false
+# rspec 3 spews warnings with rspec-puppet 1.0.1
+gem 'rspec-core', '~> 2.0',   :require => false
 group :system do
   gem 'rspec-system'
   gem 'rspec-system-puppet'
   gem 'rspec-system-serverspec'
   gem 'serverspec'
 end
+
 
 # vim:ft=ruby
